@@ -6,6 +6,18 @@
 # SPDX-License-Identifier: CC0-1.0
 
 cmake_minimum_required(VERSION 3.24...4.4.1)
+
+# TODO: Look into using a CMake preset instead of this cache variable.
+option(RS_FETCH_DEPENDENCIES
+	"Use FetchContent to get dependencies when they are not found elsewhere"
+	ON
+)
+if(RS_FETCH_DEPENDENCIES)
+	list(PREPEND CMAKE_PROJECT_TOP_LEVEL_INCLUDES
+		"${CMAKE_CURRENT_SOURCE_DIR}/mk/cmake/fetchcontent_provider.cmake"
+	)
+endif()
+
 project(retroshare
 	VERSION 0.6.7
 	LANGUAGES CXX C
@@ -202,8 +214,10 @@ set(
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/mk/cmake")
 set(CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE)
-set(FETCHCONTENT_QUIET OFF)
-include(FetchContent)
+
+if(RS_FETCH_DEPENDENCIES)
+	include(fetchcontent_provider_declare)
+endif()
 
 find_package(Threads REQUIRED)
 find_package(OpenSSL REQUIRED)
