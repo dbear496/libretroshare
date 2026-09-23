@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------ *\
-# mk/cmake/udp-discovery-extra.cmake.in
+# mk/cmake/Fetchopenpgpsdk.cmake
 # This file is part of RetroShare.
 #
 # Copyright (C) 2026      David Bears <dbear4q@gmail.com>
@@ -18,19 +18,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ------------------------------------------------------------------------ */
 
-add_library(udp-discovery-cpp::udp-discovery ALIAS udp-discovery)
+FetchContent_MakeAvailable(${FETCH_PROVIDER_PACKAGE_NAME})
+set(${FETCH_PROVIDER_PACKAGE_NAME}_FOUND TRUE)
 
-target_include_directories(udp-discovery PUBLIC
-	"${udp-discovery-cpp_SOURCE_DIR}"
-)
-
-
-# Legacy C submodules trip strict GCC >= 15 diagnostics that are now errors by
-# default; downgrade them to warnings for now.
-if(WIN32)
-	target_compile_options(udp-discovery PRIVATE
-	  -Wno-error=incompatible-pointer-types
-	  -Wno-error=int-conversion
-	  -Wno-error=implicit-function-declaration
-	)
-endif()
+add_library(openpgpsdk::openpgpsdk ALIAS openpgpsdk)

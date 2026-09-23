@@ -20,7 +20,7 @@
 
 
 list(APPEND CMAKE_MODULE_PATH
-	"${PROJECT_SOURCE_DIR}/mk/cmake/fetchcontent_provider_packages"
+	"${PROJECT_SOURCE_DIR}/mk/cmake/fetch_provider_packages"
 )
 set(FETCHCONTENT_QUIET OFF)
 include(FetchContent)
@@ -45,15 +45,14 @@ endif()
 ################################################################################
 ### bitdht
 
-FetchContent_Declare(bitdht
-	GIT_REPOSITORY "https://github.com/RetroShare/BitDHT.git"
-	GIT_TAG "origin/master"
+FetchContent_Declare(BitDHT
+	GIT_REPOSITORY "https://github.com/dbear496/RetroShare_BitDHT.git"
+	GIT_TAG "origin/cmake-refactor"
 	GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	TIMEOUT 10
 	EXCLUDE_FROM_ALL
 )
-list(APPEND fetchcontent_provider_packages bitdht)
 
 ################################################################################
 ### cpptrace
@@ -65,7 +64,6 @@ FetchContent_Declare(cpptrace
 	GIT_PROGRESS TRUE
 	TIMEOUT 10
 )
-list(APPEND fetchcontent_provider_packages cpptrace)
 
 ################################################################################
 ### jni.hpp
@@ -77,7 +75,6 @@ FetchContent_Declare(jni.hpp
 	GIT_PROGRESS TRUE
 	TIMEOUT 10
 )
-list(APPEND fetchcontent_provider_packages jni.hpp)
 
 ################################################################################
 ### openpgpsdk
@@ -90,7 +87,6 @@ FetchContent_Declare(openpgpsdk
 	TIMEOUT 10
 	EXCLUDE_FROM_ALL
 )
-list(APPEND fetchcontent_provider_packages openpgpsdk)
 
 ################################################################################
 ### rapidjson
@@ -99,6 +95,7 @@ set(RAPIDJSON_BUILD_EXAMPLES OFF CACHE BOOL "Build rapidjson examples.")
 set(RAPIDJSON_BUILD_TESTS OFF CACHE BOOL
 	"Build rapidjson perftests and unittests."
 )
+set(CMAKE_EXPORT_NO_PACKAGE_REGISTRY TRUE)
 FetchContent_Declare(RapidJSON
 	GIT_REPOSITORY "https://github.com/Tencent/rapidjson.git"
 	GIT_TAG "origin/master"
@@ -107,7 +104,6 @@ FetchContent_Declare(RapidJSON
 	TIMEOUT 10
 	EXCLUDE_FROM_ALL
 )
-list(APPEND fetchcontent_provider_packages RapidJSON)
 
 ################################################################################
 ### restbed
@@ -117,12 +113,11 @@ set(BUILD_SSL OFF CACHE BOOL "enable restbed SSL support")
 FetchContent_Declare(restbed
 	GIT_REPOSITORY "https://github.com/Corvusoft/restbed.git"
 	GIT_TAG 6001a322809b5005b8bcccdf593fdda6f0173691
-	GIT_SUBMODULES dependency/asio dependency/catch
+	# GIT_SUBMODULES dependency/asio dependency/catch
 	# GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	TIMEOUT 10
 )
-list(APPEND fetchcontent_provider_packages restbed)
 
 ################################################################################
 ### rnp
@@ -136,7 +131,6 @@ FetchContent_Declare(
 	TIMEOUT 10
 	EXCLUDE_FROM_ALL
 )
-list(APPEND fetchcontent_provider_packages rnp)
 
 ################################################################################
 ### sam3
@@ -168,7 +162,6 @@ ExternalProject_Add(sam3_external
   BUILD_BYPRODUCTS "${sam3_external_BINARY_DIR}/libsam3.a"
   BUILD_ENVIRONMENT_MODIFICATION ${sam3_external_BUILD_ENVIRONMENT}
 )
-list(APPEND fetchcontent_provider_packages sam3_external)
 
 ################################################################################
 ### udp-discovery
@@ -184,4 +177,3 @@ FetchContent_Declare(udp-discovery-cpp
 	TIMEOUT 10
 	PATCH_COMMAND sed -i -e "s/^cmake_minimum_required(VERSION 3.0)\$/cmake_minimum_required(VERSION 2.8...4.3.4)/" CMakeLists.txt
 )
-list(APPEND fetchcontent_provider_packages udp-discovery-cpp)

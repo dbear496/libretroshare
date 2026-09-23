@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------ *\
-# mk/cmake/restbed-extra.cmake.in
+# mk/cmake/FetchBitDHT.cmake
 # This file is part of RetroShare.
 #
 # Copyright (C) 2026      David Bears <dbear4q@gmail.com>
@@ -18,22 +18,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ------------------------------------------------------------------------ */
 
-if(BUILD_SHARED_LIBS)
-  set(RESTBED_TARGETS restbed-shared restbed-static)
-else()
-  set(RESTBED_TARGETS restbed-static restbed-shared)
-endif()
+FetchContent_MakeAvailable(${FETCH_PROVIDER_PACKAGE_NAME})
+set(${FETCH_PROVIDER_PACKAGE_NAME}_FOUND TRUE)
 
-foreach(RESTBED_TARGET ${RESTBED_TARGETS})
-  if(TARGET ${RESTBED_TARGET})
-    if(NOT TARGET restbed::${RESTBED_TARGET})
-      add_library(restbed::${RESTBED_TARGET} ALIAS ${RESTBED_TARGET})
-      if(WIN32)
-        target_link_libraries(${RESTBED_TARGET} PRIVATE ws2_32 wsock32)
-      endif()
-    endif()
-    if(NOT TARGET restbed::restbed)
-      add_library(restbed::restbed ALIAS ${RESTBED_TARGET})
-    endif()
-  endif()
-endforeach()
+set(BD_BOOT_FILE "${bitdht_SOURCE_DIR}/src/bitdht/bdboot.txt")

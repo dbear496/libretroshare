@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------ *\
-# mk/cmake/rnp-extra.cmake.in
+# mk/cmake/Fetchsam3.cmake
 # This file is part of RetroShare.
 #
 # Copyright (C) 2026      David Bears <dbear4q@gmail.com>
@@ -18,13 +18,19 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ------------------------------------------------------------------------ */
 
-# INSTALL(TARGETS RapidJSON EXPORT RapidJSON-targets)
-# export(EXPORT RapidJSON-targets
-#   FILE "${RapidJSON_BINARY_DIR}/RapidJSON-targets.cmake"
-# )
-#
-# include("${RapidJSON_BINARY_DIR}/RapidJSONConfig.cmake")
+ExternalProject_Get_Property(sam3_external SOURCE_DIR BINARY_DIR)
+set(${FETCH_PROVIDER_PACKAGE_NAME}_FOUND TRUE)
 
-target_include_directories(RapidJSON INTERFACE
-  "$<BUILD_INTERFACE:${RapidJSON_SOURCE_DIR}/include>"
-)
+if(NOT TARGET libsam3::libsam3)
+  add_library(libsam3::libsam3 STATIC IMPORTED)
+  set_target_properties(libsam3::libsam3 PROPERTIES
+    IMPORTED_LOCATION "${BINARY_DIR}/libsam3.a"
+    INTERFACE_INCLUDE_DIRECTORIES
+      "${SOURCE_DIR}/src/libsam3;${SOURCE_DIR}/src/libsam3a"
+  )
+  add_dependencies(libsam3::libsam3 libsam3_external)
+
+  if(WIN32)
+    target_link_libraries(libsam3::libsam3 INTERFACE ws2_32)
+  endif()
+endif()

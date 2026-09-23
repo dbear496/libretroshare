@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------ *\
-# mk/cmake/rnp-extra.cmake.in
+# mk/cmake/Fetchjni.hpp.cmake
 # This file is part of RetroShare.
 #
 # Copyright (C) 2026      David Bears <dbear4q@gmail.com>
@@ -18,4 +18,11 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ------------------------------------------------------------------------ */
 
-add_library(rnp::librnp ALIAS librnp)
+FetchContent_MakeAvailable(${FETCH_PROVIDER_PACKAGE_NAME})
+set(${FETCH_PROVIDER_PACKAGE_NAME}_FOUND TRUE)
+
+add_library(jni.hpp::jni.hpp IMPORTED)
+
+target_include_directories(jni.hpp::jni.hpp PUBLIC
+	"${jni.hpp_SOURCE_DIR}/include"
+)

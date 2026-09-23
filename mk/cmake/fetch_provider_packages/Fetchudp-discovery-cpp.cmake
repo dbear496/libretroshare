@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------ *\
-# mk/cmake/libsam3-extra.cmake
+# mk/cmake/Fetchudp-discovery-cpp.cmake
 # This file is part of RetroShare.
 #
 # Copyright (C) 2026      David Bears <dbear4q@gmail.com>
@@ -18,18 +18,22 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ------------------------------------------------------------------------ */
 
-ExternalProject_Get_Property(libsam3_external SOURCE_DIR BINARY_DIR)
+FetchContent_MakeAvailable(${FETCH_PROVIDER_PACKAGE_NAME})
+set(${FETCH_PROVIDER_PACKAGE_NAME}_FOUND TRUE)
 
-if(NOT TARGET libsam3::libsam3)
-  add_library(libsam3::libsam3 STATIC IMPORTED)
-  set_target_properties(libsam3::libsam3 PROPERTIES
-    IMPORTED_LOCATION "${BINARY_DIR}/libsam3.a"
-    INTERFACE_INCLUDE_DIRECTORIES
-      "${SOURCE_DIR}/src/libsam3;${SOURCE_DIR}/src/libsam3a"
-  )
-  add_dependencies(libsam3::libsam3 libsam3_external)
+add_library(udp-discovery-cpp::udp-discovery ALIAS udp-discovery)
 
-  if(WIN32)
-    target_link_libraries(libsam3::libsam3 INTERFACE ws2_32)
-  endif()
+target_include_directories(udp-discovery PUBLIC
+	"${udp-discovery-cpp_SOURCE_DIR}"
+)
+
+
+# Legacy C submodules trip strict GCC >= 15 diagnostics that are now errors by
+# default; downgrade them to warnings for now.
+if(WIN32)
+	target_compile_options(udp-discovery PRIVATE
+	  -Wno-error=incompatible-pointer-types
+	  -Wno-error=int-conversion
+	  -Wno-error=implicit-function-declaration
+	)
 endif()

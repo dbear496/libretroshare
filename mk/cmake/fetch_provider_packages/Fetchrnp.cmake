@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------ *\
-# mk/cmake/openpgpsdk-extra.cmake.in
+# mk/cmake/Fetchrnp.cmake
 # This file is part of RetroShare.
 #
 # Copyright (C) 2026      David Bears <dbear4q@gmail.com>
@@ -18,4 +18,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ------------------------------------------------------------------------ */
 
-add_library(openpgpsdk::openpgpsdk ALIAS openpgpsdk)
+FetchContent_MakeAvailable(${FETCH_PROVIDER_PACKAGE_NAME})
+set(${FETCH_PROVIDER_PACKAGE_NAME}_FOUND TRUE)
+
+add_library(rnp::librnp ALIAS librnp)

@@ -8,13 +8,13 @@
 cmake_minimum_required(VERSION 3.24...4.4.1)
 
 # TODO: Look into using a CMake preset instead of this cache variable.
-option(RS_FETCH_DEPENDENCIES
-	"Use FetchContent to get dependencies when they are not found elsewhere"
+option(FETCH_DEPENDENCY_PROVIDER
+	"Use the Fetch dependency provider to get project dependencies"
 	ON
 )
-if(RS_FETCH_DEPENDENCIES)
+if(FETCH_DEPENDENCY_PROVIDER)
 	list(PREPEND CMAKE_PROJECT_TOP_LEVEL_INCLUDES
-		"${CMAKE_CURRENT_SOURCE_DIR}/mk/cmake/fetchcontent_provider.cmake"
+		"${CMAKE_CURRENT_SOURCE_DIR}/mk/cmake/fetch_provider.cmake"
 	)
 endif()
 
@@ -215,8 +215,8 @@ set(
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/mk/cmake")
 set(CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE)
 
-if(RS_FETCH_DEPENDENCIES)
-	include(fetchcontent_provider_declare)
+if(FETCH_DEPENDENCY_PROVIDER)
+	include(mk/cmake/fetch_provider_declare.cmake)
 endif()
 
 find_package(Threads REQUIRED)
@@ -441,7 +441,7 @@ endif(RS_RNPLIB)
 ### bitdht
 
 if(RS_BITDHT)
-	find_package(bitdht REQUIRED)
+	find_package(BitDHT REQUIRED)
 
 	target_compile_definitions(${PROJECT_NAME} PUBLIC RS_USE_BITDHT)
 	target_link_libraries(${PROJECT_NAME} PRIVATE bitdht::bitdht)
