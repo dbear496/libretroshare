@@ -60,8 +60,9 @@ FetchContent_Declare(asio
 
 FetchContent_Declare(BitDHT
 	GIT_REPOSITORY "https://github.com/dbear496/RetroShare_BitDHT.git"
-	GIT_TAG "origin/cmake-refactor"
-	GIT_SHALLOW TRUE
+	GIT_TAG af783b6b37b1f140f97e066e980182ab5af60772
+	# GIT_TAG "origin/cmake-refactor"
+	# GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	TIMEOUT 10
 	EXCLUDE_FROM_ALL
