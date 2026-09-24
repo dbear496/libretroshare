@@ -397,13 +397,13 @@ endif(RS_EXPORT_JNI_ONLOAD)
 
 
 ################################################################################
-### libsam3
+### sam3
 
 if(RS_USE_I2P_SAM3)
-	find_package(libsam3 REQUIRED)
+	find_package(sam3 REQUIRED)
 	target_link_libraries(${PROJECT_NAME}
 		PRIVATE
-		libsam3::libsam3
+		sam3::libsam3
 	)
 	target_compile_definitions(${PROJECT_NAME}
 		PRIVATE

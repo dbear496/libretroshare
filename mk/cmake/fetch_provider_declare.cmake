@@ -56,7 +56,7 @@ FetchContent_Declare(asio
 )
 
 ################################################################################
-### bitdht
+### BitDHT
 
 FetchContent_Declare(BitDHT
 	GIT_REPOSITORY "https://github.com/dbear496/RetroShare_BitDHT.git"
@@ -190,5 +190,5 @@ FetchContent_Declare(udp-discovery-cpp
 	GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	TIMEOUT 10
-	PATCH_COMMAND sed -i -e "s/^cmake_minimum_required(VERSION 3.0)\$/cmake_minimum_required(VERSION 2.8...4.3.4)/" CMakeLists.txt
+	PATCH_COMMAND sed -i -e "s/^cmake_minimum_required(VERSION 3.0)\$/cmake_minimum_required(VERSION 3.0...4.4)/" CMakeLists.txt
 )

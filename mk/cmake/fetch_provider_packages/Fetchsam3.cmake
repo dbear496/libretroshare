@@ -23,16 +23,16 @@ cmake_minimum_required(VERSION 3.24...4.4)
 ExternalProject_Get_Property(sam3_external SOURCE_DIR BINARY_DIR)
 set(${FETCH_PROVIDER_PACKAGE_NAME}_FOUND TRUE)
 
-if(NOT TARGET libsam3::libsam3)
-  add_library(libsam3::libsam3 STATIC IMPORTED)
-  set_target_properties(libsam3::libsam3 PROPERTIES
+if(NOT TARGET sam3::libsam3)
+  add_library(sam3::libsam3 STATIC IMPORTED)
+  set_target_properties(sam3::libsam3 PROPERTIES
     IMPORTED_LOCATION "${BINARY_DIR}/libsam3.a"
     INTERFACE_INCLUDE_DIRECTORIES
       "${SOURCE_DIR}/src/libsam3;${SOURCE_DIR}/src/libsam3a"
   )
-  add_dependencies(libsam3::libsam3 libsam3_external)
+  add_dependencies(sam3::libsam3 sam3_external)
 
   if(WIN32)
-    target_link_libraries(libsam3::libsam3 INTERFACE ws2_32)
+    target_link_libraries(sam3::libsam3 INTERFACE ws2_32)
   endif()
 endif()
