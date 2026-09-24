@@ -20,6 +20,11 @@
 
 cmake_minimum_required(VERSION 3.24...4.4)
 
+option(FETCH_DEPENDENCY_PROVIDER
+	"Use the Fetch dependency provider to get project dependencies"
+	ON
+)
+
 macro(fetch_provide_dependency method package)
 	set(fetch_provider_${package}_findargs
 		${ARGN} BYPASS_PROVIDER
@@ -47,6 +52,8 @@ macro(fetch_provide_dependency method package)
 	endif()
 endmacro(fetch_provide_dependency)
 
-cmake_language(SET_DEPENDENCY_PROVIDER fetch_provide_dependency
-	SUPPORTED_METHODS FIND_PACKAGE
-)
+if(FETCH_DEPENDENCY_PROVIDER)
+	cmake_language(SET_DEPENDENCY_PROVIDER fetch_provide_dependency
+		SUPPORTED_METHODS FIND_PACKAGE
+	)
+endif()

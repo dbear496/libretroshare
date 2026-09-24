@@ -7,16 +7,9 @@
 
 cmake_minimum_required(VERSION 3.24...4.4.1)
 
-# TODO: Look into using a CMake preset instead of this cache variable.
-option(FETCH_DEPENDENCY_PROVIDER
-	"Use the Fetch dependency provider to get project dependencies"
-	ON
+list(PREPEND CMAKE_PROJECT_TOP_LEVEL_INCLUDES
+	"${CMAKE_CURRENT_SOURCE_DIR}/mk/cmake/fetch_provider.cmake"
 )
-if(FETCH_DEPENDENCY_PROVIDER)
-	list(PREPEND CMAKE_PROJECT_TOP_LEVEL_INCLUDES
-		"${CMAKE_CURRENT_SOURCE_DIR}/mk/cmake/fetch_provider.cmake"
-	)
-endif()
 
 project(retroshare
 	VERSION 0.6.7
@@ -214,10 +207,7 @@ set(
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/mk/cmake")
 set(CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE)
-
-if(FETCH_DEPENDENCY_PROVIDER)
-	include(mk/cmake/fetch_provider_declare.cmake)
-endif()
+include(mk/cmake/fetch_provider_declare.cmake)
 
 find_package(Threads REQUIRED)
 find_package(OpenSSL REQUIRED)
