@@ -56,6 +56,6 @@ target_sources(${PROJECT_NAME}
 )
 
 find_package(restbed REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE restbed::restbed)
+target_link_libraries(${PROJECT_NAME} PUBLIC restbed::restbed)
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC RS_JSONAPI)

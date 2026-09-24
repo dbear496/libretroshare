@@ -290,12 +290,14 @@ add_library(${PROJECT_NAME})
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 
 target_link_libraries(${PROJECT_NAME}
+	PUBLIC
+	OpenSSL::Crypto
+
 	## TODO: I have a suspicion some of these need to be public
 	PRIVATE
 	${CMAKE_DL_LIBS}
 	Threads::Threads
 	OpenSSL::SSL
-	OpenSSL::Crypto
 	BZip2::BZip2
 	ZLIB::ZLIB
 )
