@@ -32,6 +32,9 @@ if(NOT TARGET sam3::libsam3)
   )
   add_dependencies(sam3::libsam3 sam3_external)
 
+  # make the directory so that CMake doesn't complain before sam3 is built
+  file(MAKE_DIRECTORY "${SOURCE_DIR}/src/libsam3" "${SOURCE_DIR}/src/libsam3a")
+
   if(WIN32)
     target_link_libraries(sam3::libsam3 INTERFACE ws2_32)
   endif()
