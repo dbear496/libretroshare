@@ -18,15 +18,19 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ------------------------------------------------------------------------ */
 
+cmake_minimum_required(VERSION 3.24...4.4)
 
 macro(fetch_provide_dependency method package)
 	set(fetch_provider_${package}_findargs
-		${ARGN} BYPASS_PROVIDER OPTIONAL
+		${ARGN} BYPASS_PROVIDER
 	)
 	list(REMOVE_ITEM fetch_provider_${package}_findargs REQUIRED)
+	if(CMAKE_VERSION VERSION_GREATER_EQUAL 4.0)
+		list(APPEND fetch_provider_${package}_findargs OPTIONAL)
+	endif()
 	find_package(${package} ${fetch_provider_${package}_findargs})
 	if(NOT ${package}_FOUND)
-		message(STATUS "Trying to fetch ${package}...")
+		message(STATUS "Fetching ${package}...")
 		set(FETCH_PROVIDER_PACKAGE_NAME ${package})
 		include(Fetch${package} OPTIONAL
 			RESULT_VARIABLE fetch_provider_${package}_fetchfile
