@@ -19,6 +19,8 @@
  # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ## ---------------------------------------------------------------------- ##
 
+cmake_minimum_required(VERSION 3.24...4.4)
+
 find_library(udp-discovery_LIBRARY NAMES udp-discovery)
 find_path(udp-discovery_INCLUDE NAMES udp_discovery_peer.hpp)
 find_program(udp-discovery_TOOL NAMES udp-discovery-tool)

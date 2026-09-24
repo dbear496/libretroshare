@@ -18,6 +18,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ------------------------------------------------------------------------ */
 
+cmake_minimum_required(VERSION 3.24...4.4)
+
 ExternalProject_Get_Property(sam3_external SOURCE_DIR BINARY_DIR)
 set(${FETCH_PROVIDER_PACKAGE_NAME}_FOUND TRUE)
 

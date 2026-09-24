@@ -18,6 +18,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ------------------------------------------------------------------------ */
 
+cmake_minimum_required(VERSION 3.24...4.4)
+
 FetchContent_MakeAvailable(${FETCH_PROVIDER_PACKAGE_NAME})
 set(${FETCH_PROVIDER_PACKAGE_NAME}_FOUND TRUE)
 
