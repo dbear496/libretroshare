@@ -150,6 +150,7 @@ FetchContent_Declare(
 ################################################################################
 ### sam3
 
+if(NOT TARGET sam3_external)
 set(sam3_external_SOURCE_DIR "sam3_external-prefix/src/sam3_external")
 set(sam3_external_BINARY_DIR ${sam3_external_SOURCE_DIR})
 list(APPEND sam3_external_BUILD_ENVIRONMENT
@@ -177,6 +178,7 @@ ExternalProject_Add(sam3_external
   BUILD_BYPRODUCTS "${sam3_external_BINARY_DIR}/libsam3.a"
   BUILD_ENVIRONMENT_MODIFICATION ${sam3_external_BUILD_ENVIRONMENT}
 )
+endif()
 
 ################################################################################
 ### udp-discovery
