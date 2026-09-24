@@ -153,15 +153,18 @@ FetchContent_Declare(
 if(NOT TARGET sam3_external)
 set(sam3_external_SOURCE_DIR "sam3_external-prefix/src/sam3_external")
 set(sam3_external_BINARY_DIR ${sam3_external_SOURCE_DIR})
-list(APPEND sam3_external_BUILD_ENVIRONMENT
-  "CC=set:${CMAKE_C_COMPILER}"
-	"AR=set:${CMAKE_AR}"
-)
+set(sam3_external_LDFLAGS "-fPIC")
 if(WIN32)
-  list(APPEND sam3_external_BUILD_ENVIRONMENT
-    "LDFLAGS=set:-lmingw32 -lws2_32 -lwsock32 -mwindows"
+  list(APPEND sam3_external_LDFLAGS
+    "-lmingw32" "-lws2_32" "-lwsock32" "-mwindows"
   )
 endif()
+list(JOIN sam3_external_LDFLAGS " " sam3_external_LDFLAGS)
+set(sam3_external_BUILD_ENVIRONMENT
+  "CC=set:${CMAKE_C_COMPILER}"
+	"AR=set:${CMAKE_AR}"
+	"LDFLAGS=set:${sam3_external_LDFLAGS}"
+)
 EnvironmentModification(envmod_build ${sam3_external_BUILD_ENVIRONMENT})
 ExternalProject_Add(sam3_external
 	GIT_REPOSITORY "https://github.com/i2p/libsam3.git"
