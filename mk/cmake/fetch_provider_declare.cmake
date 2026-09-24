@@ -18,6 +18,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # ------------------------------------------------------------------------ */
 
+cmake_minimum_required(VERSION 3.24...4.4)
 
 list(APPEND CMAKE_MODULE_PATH
 	"${PROJECT_SOURCE_DIR}/mk/cmake/fetch_provider_packages"
@@ -41,6 +42,18 @@ else()
 		set(${outvar} ${CMAKE_COMMAND} -E env ${ARGN} -- PARENT_SCOPE)
 	endfunction(EnvironmentModification)
 endif()
+
+################################################################################
+### asio
+
+FetchContent_Declare(asio
+	GIT_REPOSITORY "https://github.com/chriskohlhoff/asio.git"
+	GIT_TAG "origin/master"
+	GIT_SHALLOW TRUE
+	GIT_PROGRESS TRUE
+	TIMEOUT 10
+	EXCLUDE_FROM_ALL
+)
 
 ################################################################################
 ### bitdht
@@ -110,6 +123,25 @@ FetchContent_Declare(RapidJSON
 
 set(BUILD_TESTS OFF CACHE BOOL "build restbed tests")
 set(BUILD_SSL OFF CACHE BOOL "enable restbed SSL support")
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/restbed.patch" [===[
+diff --git a/cmake/Findasio.cmake b/cmake/Findasio.cmake
+index 42f4095..e7b0469 100644
+--- a/cmake/Findasio.cmake
++++ b/cmake/Findasio.cmake
+@@ -1,10 +1,10 @@
+ find_path( asio_INCLUDE asio.hpp HINTS "/usr/include" "/usr/local/include" "/opt/local/include" )
+
+ if ( asio_INCLUDE )
+-    set( ASIO_FOUND TRUE )
++    set( asio_FOUND TRUE )
+     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DASIO_STANDALONE=YES" )
+
+     message( STATUS "Found ASIO include at: ${asio_INCLUDE}" )
+ else ( )
+-    message( FATAL_ERROR "Failed to locate ASIO dependency." )
++    message( WARNING "Failed to locate ASIO dependency." )
+ endif ( )
+]===])
 FetchContent_Declare(restbed
 	GIT_REPOSITORY "https://github.com/Corvusoft/restbed.git"
 	GIT_TAG 6001a322809b5005b8bcccdf593fdda6f0173691
@@ -117,6 +149,7 @@ FetchContent_Declare(restbed
 	# GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	TIMEOUT 10
+	PATCH_COMMAND patch -p1 -i "${CMAKE_CURRENT_BINARY_DIR}/restbed.patch"
 )
 
 ################################################################################
