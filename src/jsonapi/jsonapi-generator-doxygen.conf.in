@@ -151,9 +151,9 @@ RECURSIVE              = YES
 # run.
 
 EXCLUDE                = \
-  @CMAKE_CURRENT_SOURCE_DIR@/src/tests \
-  @CMAKE_CURRENT_SOURCE_DIR@/src/unused \
-  @CMAKE_CURRENT_SOURCE_DIR@/src/unfinished \
+  @PROJECT_SOURCE_DIR@/src/tests \
+  @PROJECT_SOURCE_DIR@/src/unused \
+  @PROJECT_SOURCE_DIR@/src/unfinished \
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded

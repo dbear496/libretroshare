@@ -274,8 +274,8 @@ openbsd-* {
 # ###########################################
 
 bitdht {
-	LIBS += ../../libbitdht/src/lib/libbitdht.a
-	PRE_TARGETDEPS *= ../../libbitdht/src/lib/libbitdht.a
+	LIBS += ../../supportlibs/libbitdht/src/lib/libbitdht.a
+	PRE_TARGETDEPS *= ../../supportlibs/libbitdht/src/lib/libbitdht.a
 }
 
 win32 {
@@ -343,9 +343,9 @@ SOURCES +=  libretroshare/gxs/nxs_test/nxsdummyservices.cc \
 	libretroshare/gxs/nxs_test/nxstesthub.cc \
 	libretroshare/gxs/nxs_test/rsgxsnetservice_test.cc \
 	libretroshare/gxs/nxs_test/nxsmsgsync_test.cc \
-	libretroshare/gxs/nxs_test/nxsgrpsync_test.cc \ 
+	libretroshare/gxs/nxs_test/nxsgrpsync_test.cc \
 	libretroshare/gxs/nxs_test/nxsgrpsyncdelayed.cc
-	
+
 HEADERS += libretroshare/gxs/gen_exchange/genexchangetester.h \
 	libretroshare/gxs/gen_exchange/gxspublishmsgtest.h \
 	libretroshare/gxs/gen_exchange/genexchangetestservice.h \

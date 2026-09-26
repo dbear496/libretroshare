@@ -20,7 +20,7 @@ equals(TARGET, retroshare):equals(TEMPLATE, lib){
 }
 
 bitdht {
-    !include("../../libbitdht/src/use_libbitdht.pri"):error("Including")
+    !include("../../supportlibs/libbitdht/src/use_libbitdht.pri"):error("Including")
 }
 
 # when rapidjson is mainstream on all distribs, we will not need the sources
