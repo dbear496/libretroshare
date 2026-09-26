@@ -188,9 +188,7 @@ endif()
 ################################################################################
 ### udp-discovery
 
-## TODO: upstream option to disable tests building
-set(BUILD_EXAMPLE OFF CACHE BOOL "build udp-discovery-cpp examples")
-set(BUILD_TOOL OFF CACHE BOOL "build udp-discovery-tool application")
+set(BUILD_TEST FALSE CACHE BOOL "build udp-discovery-cpp tests")
 FetchContent_Declare(udp-discovery-cpp
 	GIT_REPOSITORY "https://github.com/truvorskameikin/udp-discovery-cpp.git"
 	GIT_TAG "origin/master"

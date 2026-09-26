@@ -30,9 +30,9 @@ target_include_directories(udp-discovery PUBLIC
 )
 
 
-# Legacy C submodules trip strict GCC >= 15 diagnostics that are now errors by
-# default; downgrade them to warnings for now.
 if(WIN32)
+	# Legacy C submodules trip strict GCC >= 15 diagnostics that are now errors by
+	# default; downgrade them to warnings for now.
 	target_compile_options(udp-discovery PRIVATE
 	  -Wno-error=incompatible-pointer-types
 	  -Wno-error=int-conversion
