@@ -344,8 +344,8 @@ haiku-* {
 
 	QMAKE_CXXFLAGS *= -Dfseeko64=fseeko -Dftello64=ftello -Dstat64=stat -Dstatvfs64=statvfs -Dfopen64=fopen
         rs_openpgpsdk {
-                OPENPGPSDK_DIR = ../../openpgpsdk/src
-                INCLUDEPATH *= $${OPENPGPSDK_DIR} ../openpgpsdk
+                OPENPGPSDK_DIR = ../../supportlibs/openpgpsdk/src
+                INCLUDEPATH *= $${OPENPGPSDK_DIR} ../supportlibs/openpgpsdk
         }
 	DEFINES *= NO_SQLCIPHER
 	CONFIG += release
@@ -357,7 +357,7 @@ haiku-* {
 rs_openpgpsdk {
         # openpgpsdk
         DEFINES *= USE_OPENPGPSDK
-        OPENPGPSDK_DIR = ../../openpgpsdk/src
+        OPENPGPSDK_DIR = ../../supportlibs/openpgpsdk/src
         DEPENDPATH *= $${OPENPGPSDK_DIR}
         INCLUDEPATH *= $${OPENPGPSDK_DIR}
         PRE_TARGETDEPS *= $${OPENPGPSDK_DIR}/lib/libops.a

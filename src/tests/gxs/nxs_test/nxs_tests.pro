@@ -113,7 +113,7 @@ win32 {
     PRE_TARGETDEPS += ../../../../libretroshare/libretroshare-build-desktop/lib/libretroshare.a
 
     LIBS += ../../../../libretroshare/libretroshare-build-desktop/lib/libretroshare.a
-    LIBS += C:\Development\Rs\v0.5-gxs-b1\openpgpsdk\openpgpsdk-build-desktop\lib\libops.a
+    LIBS += C:\Development\Rs\v0.5-gxs-b1\supportlibs\openpgpsdk\openpgpsdk-build-desktop\lib\libops.a
     LIBS += C:\Development\Libraries\sqlite\sqlite-autoconf-3070900\lib\libsqlite3.a
     LIBS += -L"../../../../../lib"
     LIBS += -lssl -lcrypto -lgpgme -lpthreadGC2d -lminiupnpc -lz -lbz2
@@ -130,7 +130,7 @@ win32 {
     GPG_ERROR_DIR = ../../../../lib/libgpg-error-1.7
     GPGME_DIR  = ../../../../lib/gpgme-1.1.8
     SSL_DIR = ../../../../../OpenSSL
-    OPENPGPSDK_DIR = ../../../../openpgpsdk/src
+    OPENPGPSDK_DIR = ../../../../supportlibs/openpgpsdk/src
     INCLUDEPATH += . $${SSL_DIR}/include $${GPGME_DIR}/src $${GPG_ERROR_DIR}/src \
                 $${OPENPGPSDK_DIR}
 
@@ -146,8 +146,8 @@ win32 {
 bitdht {
 
         # Chris version.
-        #LIBS += ../../libbitdht/libbitdht-build-desktop/lib/libbitdht.a
-        #PRE_TARGETDEPS *= ../../libbitdht/libbitdht-build-desktop/lib/libbitdht.a
+        #LIBS += ../../supportlibs/libbitdht/libbitdht-build-desktop/lib/libbitdht.a
+        #PRE_TARGETDEPS *= ../../supportlibs/libbitdht/libbitdht-build-desktop/lib/libbitdht.a
 }
 
 win32 {
