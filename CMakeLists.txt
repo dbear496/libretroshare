@@ -456,7 +456,7 @@ endif(RS_BITDHT)
 ################################################################################
 ### RapidJSON
 
-find_package(RapidJSON REQUIRED)
+find_package(RapidJSON 1.1.0 REQUIRED)
 target_link_libraries(${PROJECT_NAME} PUBLIC RapidJSON)
 
 ################################################################################
