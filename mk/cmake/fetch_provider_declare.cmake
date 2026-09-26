@@ -174,6 +174,8 @@ ExternalProject_Add(sam3_external
 	TIMEOUT 10
 	CONFIGURE_COMMAND ""
   BUILD_COMMAND ${envmod_build} make build
+	PATCH_COMMAND patch -p1 -i
+		"${PROJECT_SOURCE_DIR}/mk/cmake/fetch_provider_packages/sam3.patch"
   INSTALL_COMMAND ""
   BUILD_IN_SOURCE TRUE
 	BUILD_ALWAYS TRUE
