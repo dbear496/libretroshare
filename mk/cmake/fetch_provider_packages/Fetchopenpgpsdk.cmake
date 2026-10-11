@@ -23,7 +23,7 @@ cmake_minimum_required(VERSION 3.0...4.4)
 include(FetchContent)
 FetchContent_Declare(openpgpsdk
 	GIT_REPOSITORY "https://github.com/RetroShare/OpenPGP-SDK.git"
-	GIT_TAG "origin/master"
+	GIT_TAG 40db9d6bfeffa3ff4f4f0ed41dd065f656c1816f
 	GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	TIMEOUT 10

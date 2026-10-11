@@ -45,7 +45,7 @@ EnvironmentModification(envmod_build ${sam3_external_BUILD_ENVIRONMENT})
 
 ExternalProject_Add(sam3_external
 	GIT_REPOSITORY "https://github.com/i2p/libsam3.git"
-	GIT_TAG "origin/master"
+	GIT_TAG 6b61f1cdc98d25d9a2dfaca69b30862915cb2d5a
 	GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	TIMEOUT 10

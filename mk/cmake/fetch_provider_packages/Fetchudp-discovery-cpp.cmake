@@ -25,7 +25,7 @@ set(BUILD_TEST FALSE CACHE BOOL "build udp-discovery-cpp tests")
 include(FetchContent)
 FetchContent_Declare(udp-discovery-cpp
 	GIT_REPOSITORY "https://github.com/truvorskameikin/udp-discovery-cpp.git"
-	GIT_TAG "origin/master"
+	GIT_TAG f3a3103a6c52e5707629e8d0a7e279a7758fe845
 	GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	TIMEOUT 10

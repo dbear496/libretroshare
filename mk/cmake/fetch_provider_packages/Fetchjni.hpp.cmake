@@ -23,7 +23,7 @@ cmake_minimum_required(VERSION 3.0...4.4)
 include(FetchContent)
 FetchContent_Declare(jni.hpp
 	GIT_REPOSITORY "https://github.com/RetroShare/jni.hpp.git"
-	GIT_TAG "origin/master"
+	GIT_TAG b1f3de8ec650b1d232b284da5b231d7355d73a53
 	GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	TIMEOUT 10

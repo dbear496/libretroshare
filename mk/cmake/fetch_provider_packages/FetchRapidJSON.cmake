@@ -29,7 +29,7 @@ set(CMAKE_EXPORT_NO_PACKAGE_REGISTRY TRUE)
 
 FetchContent_Declare(RapidJSON
 	GIT_REPOSITORY "https://github.com/Tencent/rapidjson.git"
-	GIT_TAG "origin/master"
+	GIT_TAG 24b5e7a8b27f42fa16b96fc70aade9106cf7102f
 	GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	TIMEOUT 10

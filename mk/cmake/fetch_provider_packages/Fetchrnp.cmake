@@ -23,7 +23,7 @@ cmake_minimum_required(VERSION 3.0...4.4)
 include(FetchContent)
 FetchContent_Declare(rnp
 	GIT_REPOSITORY "https://github.com/rnpgp/rnp.git"
-	GIT_TAG "origin/main"
+	GIT_TAG 6f8a67703e8a3cf57a4205c3f1fb6d2e4dfe22a7
 	GIT_SHALLOW TRUE
 	GIT_PROGRESS TRUE
 	TIMEOUT 10
